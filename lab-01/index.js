@@ -17,7 +17,7 @@ app.get('/', (req, res) => {
 app.get('/about', (req, res) => {
   res.status(200).json({
     name: 'Sai Kiran',
-    section: 'Backend Development Fundamentals - Section A'
+    section: 'CSE AIDE 2B'
   });
 });
 
