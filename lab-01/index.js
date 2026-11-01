@@ -16,8 +16,7 @@ app.get('/', (req, res) => {
 
 app.get('/about', (req, res) => {
   res.status(200).json({
-    name: 'Oddepelly Sai Kiran',
-    registrationNumber: '252U1R5116',
+    name: 'Sai Kiran',
     section: 'Backend Development Fundamentals - Section A'
   });
 });
