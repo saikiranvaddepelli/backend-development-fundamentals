@@ -3,6 +3,13 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
+app.use((req, res, next) => {
+  res.on('finish', () => {
+    console.log(`${req.method} ${req.originalUrl} - Status: ${res.statusCode}`);
+  });
+  next();
+});
+
 app.get('/', (req, res) => {
   res.status(200).send('Welcome to the Node.js and Express server!');
 });

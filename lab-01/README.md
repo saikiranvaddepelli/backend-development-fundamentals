@@ -7,7 +7,7 @@ Backend Development Fundamentals · Year II Term II · Aurora · Faculty: Joel P
 
 ## Live Link
 
-Not applicable (Running in local development environment; all routes tested and verified).
+Not applicable (Running in local development environment; all endpoints tested and verified locally).
 
 ---
 
@@ -61,7 +61,7 @@ node http-server.js
 | `GET` | `/` | Welcome text message | `200 OK` | `Welcome to the Node.js and Express server!` |
 | `GET` | `/about` | JSON response with name, registration number, and section | `200 OK` | `{"name":"Oddepelly Sai Kiran","registrationNumber":"252U1R5116","section":"..."}` |
 | `GET` | `/time` | JSON response with current ISO timestamp | `200 OK` | `{"currentTime":"2026-..."}` |
-| `ALL` | `*` (e.g. `/unknown`) | 404 handler for any unmapped route | `404 Not Found` | `404 Not Found: The requested resource does not exist.` |
+| `ALL` | `*` (e.g. `/unknown-path`) | 404 handler for any unmapped route | `404 Not Found` | `404 Not Found: The requested resource does not exist.` |
 
 ### Plain HTTP Server (`http-server.js`)
 
@@ -73,49 +73,58 @@ node http-server.js
 
 ## Screenshots
 
-### 1. Plain HTTP Server (`GET /`)
-![Plain HTTP Server](screenshots/01-http-server.png)
+### Task 1: Initialize Project & package.json
+![Task 1 npm init](screenshots/01-task1-npm-init.png)
 
-### 2. Express Server Welcome (`GET /`)
-![Express Welcome](screenshots/02-express-welcome.png)
+### Task 2: Install Express & Locate in node_modules
+![Task 2 npm install express](screenshots/02-task2-npm-install-express.png)
 
-### 3. Express Server About (`GET /about`)
-![Express About JSON](screenshots/03-express-about.png)
+### Task 3: Plain HTTP Server (`http.createServer` on Port 3000)
+![Task 3 Plain HTTP Server](screenshots/03-task3-plain-http-server.png)
 
-### 4. Express Server Time (`GET /time`)
-![Express Current Time](screenshots/04-express-time.png)
+### Task 4 & 5: Express Server Welcome Route (`GET /`)
+![Task 4 and 5 Welcome Route](screenshots/04-task4-5-get-welcome.png)
 
-### 5. Express Server 404 Unknown Route (`GET /unknown`)
-![Express 404 Not Found](screenshots/05-express-404.png)
+### Task 5: Express Server About Route (`GET /about`)
+![Task 5 About Route](screenshots/05-task5-get-about.png)
+
+### Task 5: Express Server Time Route (`GET /time`)
+![Task 5 Time Route](screenshots/06-task5-get-time.png)
+
+### Task 6: 404 Handler for Unknown Route (`GET /unknown-path`)
+![Task 6 404 Route](screenshots/07-task6-get-404-unknown.png)
+
+### Task 7: Server Terminal Request & Status Code Logs
+![Task 7 Status Code Logs](screenshots/08-task7-terminal-status-logs.png)
 
 ---
 
 ## package.json Fields Explanation
 
-- `name`: The lowercase package name (`lab-01`).
-- `version`: The current semantic version (`1.0.0`).
-- `description`: Brief summary of the project.
-- `main`: The entry point script (`index.js`).
-- `scripts`: Custom CLI shortcut commands (`npm start`, `npm run start:http`).
-- `keywords`: Array of search tags for the project.
+- `name`: The lowercase unique name of the project module (`lab-01`).
+- `version`: The semantic versioning identifier (`1.0.0`).
+- `description`: Brief description explaining the purpose of the lab project.
+- `main`: The default entry point executed by Node.js (`index.js`).
+- `scripts`: CLI alias shortcuts for starting and running servers (`npm start`, `npm run start:http`).
+- `keywords`: Array of search index tags associated with the project.
 - `author`: The developer's name (`Oddepelly Sai Kiran`).
-- `license`: Open-source licensing standard (`ISC`).
-- `dependencies`: Production packages required by the application (`express`).
+- `license`: Open-source distribution license (`ISC`).
+- `dependencies`: Third-party packages required at runtime (`express`).
 
 ---
 
 ## Viva Questions & Answers
 
 1. **What is the difference between `package.json` and `node_modules`?**
-   - `package.json` is a lightweight configuration file storing project metadata, scripts, and dependency version rules.
-   - `node_modules` is the directory where the actual package source code and all nested dependencies are downloaded and stored.
+   - `package.json` is a lightweight manifest file storing metadata, run scripts, and dependency definitions.
+   - `node_modules` is the directory where the complete source code of installed dependencies and their transitive sub-dependencies are stored.
 
 2. **What does `app.listen` do?**
-   - `app.listen()` binds the application to a specific port and IP address, listening for incoming HTTP connections and requests.
+   - `app.listen()` binds the application to a specific network port and host address, starting the server and allowing it to listen for incoming HTTP connections.
 
 3. **What do request and response represent?**
-   - `req` (Request) is an object containing details about the client's HTTP request, including URL path, query params, headers, and body.
-   - `res` (Response) is an object used to send status codes, headers, and payload (JSON, text, HTML) back to the client.
+   - `req` (Request) is an object containing information sent from the client (headers, URL parameters, query strings, and body payload).
+   - `res` (Response) is an object used by the server to construct and return HTTP responses (status codes, headers, and body content) back to the client.
 
 ---
 
@@ -123,3 +132,4 @@ node http-server.js
 
 - **Port collision between servers**: Both the plain HTTP server and the Express server use port 3000. Resolved by running them under distinct start scripts (`npm start` and `npm run start:http`) and cleanly terminating previous instances before switching.
 - **Order of middleware for 404 handler**: If placed before defined routes, the 404 handler intercepts all requests. Resolved by placing `app.use((req, res) => ...)` at the very bottom after all route declarations.
+- **Request logging for status verification**: Added custom request middleware logging each route's method, path, and returned status code (`200` or `404`) directly to the terminal to verify Task 7 requirements.
