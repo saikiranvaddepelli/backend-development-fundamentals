@@ -1,6 +1,6 @@
 # Backend Development Fundamentals
 
-Backend Development Fundamentals course repository (Year II Term II · Aurora · Faculty: Joel Prashanth D).
+Backend Development Fundamentals course repository (Year II Term II · Aurora · Faculty: Mr Yugandhar Gurjalwar).
 
 ## Repository Structure
 
